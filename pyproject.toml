@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pythagoraschords"
+version = "0.0.1"
+description = "Pythagoras Chords, the foundation for a free and open‑source musical universe."
+authors = [
+    { name = "Nagao Yuji" }
+]
+readme = "README.md"
+license = { text = "CC0-1.0" }
+requires-python = ">=3.6"
+
+keywords = ["music", "chords", "musical notes", "open source", "triads", "intervals", "harmonic"]
+
+[project.urls]
+Homepage = "https://github.com/DukaCrazy/pythagoraschords"
+Repository = "https://github.com/DukaCrazy/pythagoraschords"
+Documentation = "https://github.com/DukaCrazy/pythagoraschords"
+Issues = "https://github.com/DukaCrazy/pythagoraschords/issues"
