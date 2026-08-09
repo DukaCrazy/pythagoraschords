@@ -1,4 +1,4 @@
-# Pythagoras Chords v0.1.1
+# Pythagoras Chords v0.1.2
 
 ### How to Use
 ```python
@@ -25,6 +25,76 @@ A
 ['A', 'C♯', 'E', 'G♯', 'B', 'D', 'F♯']
 A
 ```
+
+### get_number()
+        number
+        0:A, 1:A#, 2:B, 3:C, 4:C#, 5:D, 6:D#, 7:E, 8:F, 9:F#, 10:G, 11:G#
+
+### get_tone(sharp_flat = False)
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+
+### get_major_scale(sharp_flat = False)
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+
+### get_major_triad_scale(triad = 0, sharp_flat = False)
+        triad
+        0:T, 1:2th, 2:3th, 3:4th, 4:5th, 5:6th, 6:7th
+
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+
+### get_diatonic_extended_chords(sharp_flat = False)
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+
+### get_diatonic_extended_chord(sub_scale = 0, sharp_flat = False)
+        sub_scale
+        0:T, 1:2th, 2:3th, 3:4th, 4:5th, 5:6th, 6:7th
+        T   [0, 4, 7, 11, 2, 5, 9]
+        2th [2, 5, 9, 0, 4, 7, 11]
+        3th [4, 7, 11, 2, 5, 9, 0]
+        4th [5, 9, 0, 4, 7, 11, 2]
+        5th [7, 11, 2, 5, 9, 0, 4]
+        6th [9, 0, 4, 7, 11, 2, 5]
+        7th [11, 2, 5, 9, 0, 4, 7]
+
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+
+### get_diatonic_extended_degree(sub_scale = 0, note = 0, sharp_flat = False)
+        Returns a specific degree (note) of an extended diatonic chord within the diatonic scale generated for this key.
+
+        sub_scale
+        0:T, 1:2th, 2:3th, 3:4th, 4:5th, 5:6th, 6:7th
+        T   [0, 4, 7, 11, 2, 5, 9]
+        2th [2, 5, 9, 0, 4, 7, 11]
+        3th [4, 7, 11, 2, 5, 9, 0]
+        4th [5, 9, 0, 4, 7, 11, 2]
+        5th [7, 11, 2, 5, 9, 0, 4]
+        6th [9, 0, 4, 7, 11, 2, 5]
+        7th [11, 2, 5, 9, 0, 4, 7]
+
+        note
+             0, 1, 2, 3, 4, 5, 6
+        T   [0, 4, 7, 11, 2, 5, 9]
+        2th [2, 5, 9, 0, 4, 7, 11]
+        3th [4, 7, 11, 2, 5, 9, 0]
+        4th [5, 9, 0, 4, 7, 11, 2]
+        5th [7, 11, 2, 5, 9, 0, 4]
+        6th [9, 0, 4, 7, 11, 2, 5]
+        7th [11, 2, 5, 9, 0, 4, 7]
+
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+
 
 ## A
 <b>Musical name: </b>La <br>
