@@ -51,7 +51,18 @@ class PythagorasChords:
         ]
 
     def _get_diatonic_sequence(self, number: int, sequence_type = 0, sharp_flat = False):
+        """
+        number
+        0:A, 1:A#, 2:B, 3:C, 4:C#, 5:D, 6:D#, 7:E, 8:F, 9:F#, 10:G, 11:G#
 
+        sequence_type
+        0: _major_scale_list
+        0: _major_diatonic_list
+
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+        """
         if sequence_type == 0:
             major_list = self._major_scale_list
         else:
@@ -79,33 +90,103 @@ class PythagorasChords:
         return self.number
 
     #A
-    def get_tone(self):
-        return self.tone
+    def get_tone(self, sharp_flat = False):
+        """
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+        """
+        return self.notes_all_bemol[self.number] if sharp_flat else self.notes_all_sharp[self.number]
 
     #['A', 'B', 'C♯', 'D', 'E', 'F♯', 'G♯']
     def get_major_scale(self, sharp_flat = False):
+        """
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+        """
         return self._get_diatonic_sequence(self.number, 0, sharp_flat)[0]
     
     #[['A', 'C♯', 'E'], ['B', 'D', 'F♯'], ['C♯', 'E', 'G♯'], ['D', 'F♯', 'A'], ['E', 'G♯', 'B'], ['F♯', 'A', 'C♯'], ['G♯', 'B', 'D']]
     def get_major_triad_scale(self, sharp_flat = False):
+        """
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+        """
         result = []
         for triad in self._get_diatonic_sequence(self.number, 1, sharp_flat):
             result.append([triad[0],triad[1],triad[2]])
         return result
 
     #['A', 'C♯', 'E']
-    def get_triad(self, triad = 0, sharp_flat = False):
+    def get_major_triad_scale(self, triad = 0, sharp_flat = False):
+        """
+        triad
+        0:T, 1:2th, 2:3th, 3:4th, 4:5th, 5:6th, 6:7th
+
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+        """
         triad_list = self._get_diatonic_sequence(self.number, 1, sharp_flat)[triad]
         return [triad_list[0],triad_list[1],triad_list[2]]
 
     #[['A', 'C♯', 'E', 'G♯', 'B', 'D', 'F♯'], ['B', 'D', 'F♯', 'A', 'C♯', 'E', 'G♯'], ['C♯', 'E', 'G♯', 'B', 'D', 'F♯', 'A'], ['D', 'F♯', 'A', 'C♯', 'E', 'G♯', 'B'], ['E', 'G♯', 'B', 'D', 'F♯', 'A', 'C♯'], ['F♯', 'A', 'C♯', 'E', 'G♯', 'B', 'D'], ['G♯', 'B', 'D', 'F♯', 'A', 'C♯', 'E']]
-    def get_diatonic_extended_chords(self, sharp_flat = False):        
+    def get_diatonic_extended_chords(self, sharp_flat = False): 
+        """
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+        """      
         return self._get_diatonic_sequence(self.number, 1, sharp_flat)
 
     #['A', 'C♯', 'E', 'G♯', 'B', 'D', 'F♯']
-    def get_diatonic_extended_chord(self, sub_scale = 0, sharp_flat = False):        
+    def get_diatonic_extended_chord(self, sub_scale = 0, sharp_flat = False):     
+        """
+        sub_scale
+        0:T, 1:2th, 2:3th, 3:4th, 4:5th, 5:6th, 6:7th
+        T   [0, 4, 7, 11, 2, 5, 9]
+        2th [2, 5, 9, 0, 4, 7, 11]
+        3th [4, 7, 11, 2, 5, 9, 0]
+        4th [5, 9, 0, 4, 7, 11, 2]
+        5th [7, 11, 2, 5, 9, 0, 4]
+        6th [9, 0, 4, 7, 11, 2, 5]
+        7th [11, 2, 5, 9, 0, 4, 7]
+
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+        """    
         return self._get_diatonic_sequence(self.number, 1, sharp_flat)[sub_scale]
 
     #A
-    def get_diatonic_extended_degree(self, sub_scale = 0, note = 0, sharp_flat = False):        
+    def get_diatonic_extended_degree(self, sub_scale = 0, note = 0, sharp_flat = False):  
+        """
+        Returns a specific degree (note) of an extended diatonic chord within the diatonic scale generated for this key.
+
+        sub_scale
+        0:T, 1:2th, 2:3th, 3:4th, 4:5th, 5:6th, 6:7th
+        T   [0, 4, 7, 11, 2, 5, 9]
+        2th [2, 5, 9, 0, 4, 7, 11]
+        3th [4, 7, 11, 2, 5, 9, 0]
+        4th [5, 9, 0, 4, 7, 11, 2]
+        5th [7, 11, 2, 5, 9, 0, 4]
+        6th [9, 0, 4, 7, 11, 2, 5]
+        7th [11, 2, 5, 9, 0, 4, 7]
+
+        note
+             0, 1, 2, 3, 4, 5, 6
+        T   [0, 4, 7, 11, 2, 5, 9]
+        2th [2, 5, 9, 0, 4, 7, 11]
+        3th [4, 7, 11, 2, 5, 9, 0]
+        4th [5, 9, 0, 4, 7, 11, 2]
+        5th [7, 11, 2, 5, 9, 0, 4]
+        6th [9, 0, 4, 7, 11, 2, 5]
+        7th [11, 2, 5, 9, 0, 4, 7]
+
+        sharp_flat
+        false: notes_all_sharp (♯)
+        true: notes_all_bemol (♭)
+        """          
         return self._get_diatonic_sequence(self.number, 1, sharp_flat)[sub_scale][note]
